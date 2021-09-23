@@ -12,6 +12,8 @@ namespace Tracer
 {
     public class Tracer : ITracer
     {
+        static object locker = new object();
+
         public Tracer()
         {
 
@@ -33,13 +35,16 @@ namespace Tracer
             }
 
             MethodTraceService methodTraceS = new MethodTraceService(stFrame.GetMethod().Name, stFrame.GetMethod().DeclaringType.Name, currentThreadID);
-            threadTraceS.PushMethodTrace(methodTraceS);
+            lock (locker)
+            {
+                threadTraceS.PushMethodTrace(methodTraceS);
 
-            Console.WriteLine($"Thread: {currentThreadID}");
-            Console.WriteLine($"Method: {stFrame.GetMethod().Name}");
-            Console.WriteLine($"Class: {stFrame.GetMethod().DeclaringType.Name}");
+                Console.WriteLine($"Thread: {currentThreadID}");
+                Console.WriteLine($"Method: {stFrame.GetMethod().Name}");
+                Console.WriteLine($"Class: {stFrame.GetMethod().DeclaringType.Name}");
 
-            Console.WriteLine();
+                Console.WriteLine();
+            }          
 
             methodTraceS.RunStopwatch();
         }
@@ -59,7 +64,7 @@ namespace Tracer
             MethodTraceService methodTrace = threadTraceS.PopMethodTrace();
             methodTrace.StopStopwatch();
 
-            TimeSpan tsTimeMethod = methodTrace.Time;
+            /*TimeSpan tsTimeMethod = methodTrace.Time;
             string elapsedTimeMethod = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
             tsTimeMethod.Hours, tsTimeMethod.Minutes, tsTimeMethod.Seconds,
             tsTimeMethod.Milliseconds);
@@ -71,7 +76,7 @@ namespace Tracer
             tsTime.Hours, tsTime.Minutes, tsTime.Seconds,
             tsTime.Milliseconds);
 
-            Console.WriteLine($"Thread time: {elapsedTime}");
+            Console.WriteLine($"Thread time: {elapsedTime}");*/
         }
 
         public TraceResult GetTraceResult()

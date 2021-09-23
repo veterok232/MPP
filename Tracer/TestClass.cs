@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Diagnostics;
@@ -37,6 +38,24 @@ namespace Tracer
             _bar.InnerMethod();
             _tracer.StopTrace();
         }
+
+        public void MyMethod2()
+        {
+            _tracer.StartTrace();
+            _bar.SuperInnerMethod();
+            _tracer.StopTrace();
+        }
+
+        public void MyMethod3()
+        {
+            _tracer.StartTrace();
+
+            //Thread myThread = new Thread(new ThreadStart(_bar.SuperInnerMethod));    !!!!!!!!!!!!!
+            //myThread.Start();                                                        !!!!!!!!!!!!!
+
+            _bar.SuperInnerMethod();
+            _tracer.StopTrace();
+        }
     }
 
     public class Bar
@@ -64,7 +83,7 @@ namespace Tracer
         {
             _tracer.StartTrace();
             int a = 0;
-            for (int i = 0; i < 5000000; i++)
+            for (int i = 0; i < 50000000; i++)
             {
                 a++;
             }

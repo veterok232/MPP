@@ -16,12 +16,13 @@ namespace Tracer
 
         public TraceResult(ConcurrentDictionary<int, ThreadTraceService> traceResultInfo)
         {
-            ThreadTraceResult[] _threadsInfo;
+            ThreadTraceResult[] _threadsInfo = new ThreadTraceResult[traceResultInfo.Count];
 
+            int i = 1;
             foreach (KeyValuePair<int, ThreadTraceService> pair in traceResultInfo)
             {
-                _threadsInfo = new ThreadTraceResult[traceResultInfo.Count];
-                _threadsInfo[pair.Key - 1] = new ThreadTraceResult(pair.Value.ID, pair.Value.Time, pair.Value.MethodsTree);
+                
+                _threadsInfo[i++ - 1] = new ThreadTraceResult(pair.Value.ID, pair.Value.Time, pair.Value.MethodsTree);
                 ThreadsInfo = new ReadOnlyCollection<ThreadTraceResult>(_threadsInfo);
             }
         }

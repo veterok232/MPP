@@ -122,7 +122,7 @@ namespace Tracer
             _threadID = threadID;
             Name = name;
             ClassName = className;
-            _methodHash = Name.GetHashCode() + ClassName.GetHashCode();
+            //_methodHash = Name.GetHashCode() + ClassName.GetHashCode();
         }
 
         public void RunStopwatch()
