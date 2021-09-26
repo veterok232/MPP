@@ -8,7 +8,6 @@ namespace Tracer
 {
     public class TreeNode<T>
     {
-
         public T Data { get; set; }
         public TreeNode<T> Parent { get; set; }
         public ICollection<TreeNode<T>> Children { get; set; }

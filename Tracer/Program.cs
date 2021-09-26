@@ -31,14 +31,22 @@ namespace Tracer
 
             TraceResult traceResult = tracer.GetTraceResult();
 
-            Console.WriteLine("threads: ");
-            foreach (ThreadTraceResult threadTraceResult in traceResult)
+            /*Console.WriteLine("threads: ");
+            foreach (ThreadTraceResult threadTraceResult in traceResult.ThreadsInfo)
             {
                 Console.WriteLine($"    id: {threadTraceResult.ID}");
                 Console.WriteLine($"    time: {threadTraceResult.Time}");
                 Console.WriteLine($"    methods:");
                 DisplayMethods(threadTraceResult.MethodsInfo, 2);
-            }
+            }*/
+
+            //Console.WriteLine();
+
+            string serializedTraceResult = Serializator.SerializeJson(traceResult);
+            Console.WriteLine(serializedTraceResult);
+
+            string serializedTraceResultXml = Serializator.SerializeTraceResultXml(traceResult);
+            Console.WriteLine(serializedTraceResultXml);
         }
 
         static void DisplayMethods(ReadOnlyCollection<MethodTraceResult> methodsTrace, int level)

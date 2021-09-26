@@ -7,24 +7,35 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Collections;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
+using System.Xml.Serialization;
+using System.Xml.Schema;
+using System.Xml;
 
 namespace Tracer
 {
+    [Serializable]
+    [XmlRoot]
+    [JsonObject]
     public class TraceResult : IEnumerable<ThreadTraceResult>
     {
+       [JsonProperty("threads")]
+       [XmlElement("root")]
         public readonly ReadOnlyCollection<ThreadTraceResult> ThreadsInfo;
+
+        public TraceResult() { }
 
         public TraceResult(ConcurrentDictionary<int, ThreadTraceService> traceResultInfo)
         {
             ThreadTraceResult[] _threadsInfo = new ThreadTraceResult[traceResultInfo.Count];
 
-            int i = 1;
+            int i = 0;
             foreach (KeyValuePair<int, ThreadTraceService> pair in traceResultInfo)
             {
-                
-                _threadsInfo[i++ - 1] = new ThreadTraceResult(pair.Value.ID, pair.Value.Time, pair.Value.MethodsTree);
-                ThreadsInfo = new ReadOnlyCollection<ThreadTraceResult>(_threadsInfo);
+                _threadsInfo[i++] = new ThreadTraceResult(pair.Value.ID, pair.Value.Time, pair.Value.MethodsTree);
             }
+
+            ThreadsInfo = new ReadOnlyCollection<ThreadTraceResult>(_threadsInfo);
         }
 
         IEnumerator<ThreadTraceResult> IEnumerable<ThreadTraceResult>.GetEnumerator()
@@ -50,12 +61,21 @@ namespace Tracer
         }
     }
 
+    [Serializable]
+    [JsonObject]
     public class ThreadTraceResult : IEnumerable<MethodTraceResult>
     {
+        [JsonProperty("id")]
+        [XmlAttribute("id")]
         public readonly string ID;
+        [JsonProperty("time")]
+        [XmlAttribute("name")]
         public readonly string Time;
         //public readonly MethodTraceResult[] MethodsInfo;
+        [JsonProperty("methods")]
         public readonly ReadOnlyCollection<MethodTraceResult> MethodsInfo;
+
+        public ThreadTraceResult() { }
 
         public ThreadTraceResult(int id, TimeSpan time, TreeNode<MethodTraceService> methodsTree)
         {
@@ -108,13 +128,24 @@ namespace Tracer
         }
     }
 
+    [Serializable]
+    [JsonObject]
     public class MethodTraceResult : IEnumerable<MethodTraceResult>
     {
+        [JsonProperty("name")]
+        [XmlAttribute("name")]
         public readonly string Name;
+        [JsonProperty("class")]
+        [XmlAttribute("class")]
         public readonly string ClassName;
+        [JsonProperty("time")]
+        [XmlAttribute("time")]
         public readonly string Time;
         //public readonly MethodTraceResult[] MethodsInfo;
+        [JsonProperty("methods")]
         public readonly ReadOnlyCollection<MethodTraceResult> MethodsInfo;
+
+        public MethodTraceResult() { }
 
         public MethodTraceResult(string name, string className, TimeSpan time, TreeNode<MethodTraceService> methodsTree)
         {

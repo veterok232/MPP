@@ -39,11 +39,11 @@ namespace Tracer
             {
                 threadTraceS.PushMethodTrace(methodTraceS);
 
-                Console.WriteLine($"Thread: {currentThreadID}");
-                Console.WriteLine($"Method: {stFrame.GetMethod().Name}");
-                Console.WriteLine($"Class: {stFrame.GetMethod().DeclaringType.Name}");
+                //Console.WriteLine($"Thread: {currentThreadID}");
+                //Console.WriteLine($"Method: {stFrame.GetMethod().Name}");
+                //Console.WriteLine($"Class: {stFrame.GetMethod().DeclaringType.Name}");
 
-                Console.WriteLine();
+                //Console.WriteLine();
             }          
 
             methodTraceS.RunStopwatch();
@@ -57,7 +57,7 @@ namespace Tracer
 
             if ((threadTraceS = TraceService.GetThreadTrace(currentThreadID)) == null)
             {
-                Console.WriteLine("Error! This thread does not exist!");
+                //Console.WriteLine("Error! This thread does not exist!");
                 return;
             }
 
