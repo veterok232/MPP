@@ -31,47 +31,13 @@ namespace Tracer
 
             TraceResult traceResult = tracer.GetTraceResult();
 
-            /*Console.WriteLine("threads: ");
-            foreach (ThreadTraceResult threadTraceResult in traceResult.ThreadsInfo)
-            {
-                Console.WriteLine($"    id: {threadTraceResult.ID}");
-                Console.WriteLine($"    time: {threadTraceResult.Time}");
-                Console.WriteLine($"    methods:");
-                DisplayMethods(threadTraceResult.MethodsInfo, 2);
-            }*/
+            SerializedTraceResult serializedTraceResult = TraceResultSerializator.SerializeJson(traceResult);
+            ResultsWriter.WriteToConsole(serializedTraceResult);
+            ResultsWriter.WriteToFile(serializedTraceResult, "D:/");
 
-            //Console.WriteLine();
-
-            string serializedTraceResult = Serializator.SerializeJson(traceResult);
-            Console.WriteLine(serializedTraceResult);
-
-            string serializedTraceResultXml = Serializator.SerializeTraceResultXml(traceResult);
-            Console.WriteLine(serializedTraceResultXml);
-        }
-
-        static void DisplayMethods(ReadOnlyCollection<MethodTraceResult> methodsTrace, int level)
-        {
-            if (methodsTrace.Count == 0) return;
-
-            foreach (MethodTraceResult methodTrace in methodsTrace)
-            {
-                DrawTabs(level);
-                Console.WriteLine($"name: {methodTrace.Name}");
-                DrawTabs(level);
-                Console.WriteLine($"class: {methodTrace.ClassName}");
-                DrawTabs(level);
-                Console.WriteLine($"time: {methodTrace.Time}");
-                DrawTabs(level);
-                Console.WriteLine($"methods:");
-                DisplayMethods(methodTrace.MethodsInfo, level + 1);
-            }
-            
-        }
-
-        static void DrawTabs(int num)
-        {
-            for (int i = 0; i < num; i++)
-                Console.Write("    ");
+            SerializedTraceResult serializedTraceResultXml = TraceResultSerializator.SerializeXml(traceResult);
+            ResultsWriter.WriteToConsole(serializedTraceResultXml);
+            ResultsWriter.WriteToFile(serializedTraceResultXml, "D:/");
         }
     }
 }

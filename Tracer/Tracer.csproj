@@ -56,7 +56,6 @@
     <Compile Include="TestClass.cs" />
     <Compile Include="Tracer.cs" />
     <Compile Include="TraceResult.cs" />
-    <Compile Include="TraceResultNonReadonly.cs" />
     <Compile Include="TraceService.cs" />
   </ItemGroup>
   <ItemGroup>

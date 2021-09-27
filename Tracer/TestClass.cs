@@ -14,18 +14,6 @@ namespace Tracer
         private Bar _bar;
         private ITracer _tracer;
 
-        public void TestMethod1()
-        {
-            Console.WriteLine("TestMethod1");
-            TestMethod2();
-        }
-
-        public void TestMethod2()
-        {
-            Console.WriteLine("TestMethod2");
-            Console.WriteLine();
-        }
-
         public Foo(ITracer tracer)
         {
             _tracer = tracer;
@@ -49,10 +37,6 @@ namespace Tracer
         public void MyMethod3()
         {
             _tracer.StartTrace();
-
-            //Thread myThread = new Thread(new ThreadStart(_bar.SuperInnerMethod));    !!!!!!!!!!!!!
-            //myThread.Start();                                                        !!!!!!!!!!!!!
-
             _bar.SuperInnerMethod();
             _tracer.StopTrace();
         }

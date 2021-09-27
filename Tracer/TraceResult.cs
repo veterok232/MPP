@@ -14,25 +14,42 @@ using System.Xml;
 
 namespace Tracer
 {
-    [Serializable]
-    [XmlRoot]
-    [JsonObject]
+    /// <summary>
+    /// Class with read-only data of trace results.
+    /// </summary>
     public class TraceResult : IEnumerable<ThreadTraceResult>
     {
-       [JsonProperty("threads")]
-       [XmlElement("root")]
+        /// <summary>
+        /// ReadOnlyCollection with info about traced threads.
+        /// </summary>
         public readonly ReadOnlyCollection<ThreadTraceResult> ThreadsInfo;
 
+        /// <summary>
+        /// Create a new instance of TraceResult.
+        /// </summary>
         public TraceResult() { }
 
+        /// <summary>
+        /// Create a new instance of TraceResult.
+        /// </summary>
+        /// <param name="traceResultInfo">Dictionary of ThreadTraceService object</param>
         public TraceResult(ConcurrentDictionary<int, ThreadTraceService> traceResultInfo)
         {
-            ThreadTraceResult[] _threadsInfo = new ThreadTraceResult[traceResultInfo.Count];
+            ThreadTraceResult[] _threadsInfo;
 
-            int i = 0;
-            foreach (KeyValuePair<int, ThreadTraceService> pair in traceResultInfo)
+            if (traceResultInfo != null)
             {
-                _threadsInfo[i++] = new ThreadTraceResult(pair.Value.ID, pair.Value.Time, pair.Value.MethodsTree);
+                _threadsInfo = new ThreadTraceResult[traceResultInfo.Count];
+
+                int i = 0;
+                foreach (KeyValuePair<int, ThreadTraceService> pair in traceResultInfo)
+                {
+                    _threadsInfo[i++] = new ThreadTraceResult(pair.Value.ID, pair.Value.Time, pair.Value.MethodsTree);
+                }
+            }
+            else
+            {
+                _threadsInfo = new ThreadTraceResult[0];
             }
 
             ThreadsInfo = new ReadOnlyCollection<ThreadTraceResult>(_threadsInfo);
@@ -61,22 +78,37 @@ namespace Tracer
         }
     }
 
-    [Serializable]
-    [JsonObject]
+    /// <summary>
+    /// Read-only results of traced thread.
+    /// </summary>
     public class ThreadTraceResult : IEnumerable<MethodTraceResult>
     {
-        [JsonProperty("id")]
-        [XmlAttribute("id")]
-        public readonly string ID;
-        [JsonProperty("time")]
-        [XmlAttribute("name")]
-        public readonly string Time;
-        //public readonly MethodTraceResult[] MethodsInfo;
-        [JsonProperty("methods")]
+        /// <summary>
+        /// Thread ID.
+        /// </summary>
+        public string ID { get; private set; }
+
+        /// <summary>
+        /// Thread executing time.
+        /// </summary>
+        public string Time { get; private set; }
+
+        /// <summary>
+        /// ReadOnlyCollection of MethodTraceResult.
+        /// </summary>
         public readonly ReadOnlyCollection<MethodTraceResult> MethodsInfo;
 
+        /// <summary>
+        /// Create a new instance of ThreadTraceResult.
+        /// </summary>
         public ThreadTraceResult() { }
 
+        /// <summary>
+        /// Create a new instance of ThreadTraceResult.
+        /// </summary>
+        /// <param name="id">Thread ID</param>
+        /// <param name="time">Thread executing time</param>
+        /// <param name="methodsTree">Call tree of traced method in this thread</param>
         public ThreadTraceResult(int id, TimeSpan time, TreeNode<MethodTraceService> methodsTree)
         {
             ID = id.ToString();
@@ -128,25 +160,43 @@ namespace Tracer
         }
     }
 
-    [Serializable]
-    [JsonObject]
+    /// <summary>
+    /// Read-only results of traced method.
+    /// </summary>
     public class MethodTraceResult : IEnumerable<MethodTraceResult>
     {
-        [JsonProperty("name")]
-        [XmlAttribute("name")]
-        public readonly string Name;
-        [JsonProperty("class")]
-        [XmlAttribute("class")]
-        public readonly string ClassName;
-        [JsonProperty("time")]
-        [XmlAttribute("time")]
-        public readonly string Time;
-        //public readonly MethodTraceResult[] MethodsInfo;
-        [JsonProperty("methods")]
+        /// <summary>
+        /// Method name
+        /// </summary>
+        public string Name { get; private set; }
+        
+        /// <summary>
+        /// Method class name
+        /// </summary>
+        public string ClassName { get; private set; }
+       
+        /// <summary>
+        /// Method executing time
+        /// </summary>
+        public string Time { get; private set; }
+        
+        /// <summary>
+        /// ReadOnlyCollection with traced methods
+        /// </summary>
         public readonly ReadOnlyCollection<MethodTraceResult> MethodsInfo;
 
+        /// <summary>
+        /// Create a new instance of MethodTraceResult.
+        /// </summary>
         public MethodTraceResult() { }
 
+        /// <summary>
+        /// Create a new instance of MethodTraceResult.
+        /// </summary>
+        /// <param name="name">Method name</param>
+        /// <param name="className">Method class name</param>
+        /// <param name="time">Method executing time</param>
+        /// <param name="methodsTree">Call tree of traced method in this method/param>
         public MethodTraceResult(string name, string className, TimeSpan time, TreeNode<MethodTraceService> methodsTree)
         {
             Name = name;
