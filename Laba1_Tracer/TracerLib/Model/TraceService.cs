@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Concurrent;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using TracerLib.Service;
 
-namespace Tracer
+namespace TracerLib.Model
 {
     /// <summary>
     /// Service class for Tracer.

@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using ResultsWriter.Service;
 
-namespace Tracer
+namespace ResultsWriter.Main
 {
     /// <summary>
     /// Class for writing SerializedTraceResult to console or file.
     /// </summary>
-    public static class ResultsWriter
+    public static class Writer
     {
         /// <summary>
         /// Write SerializedTraceResult to console.

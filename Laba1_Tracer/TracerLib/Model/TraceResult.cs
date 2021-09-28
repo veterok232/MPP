@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection;
 using System.Collections;
 using System.Collections.ObjectModel;
-using Newtonsoft.Json;
-using System.Xml.Serialization;
-using System.Xml.Schema;
-using System.Xml;
+using TracerLib.Service;
 
-namespace Tracer
+namespace TracerLib.Model
 {
     /// <summary>
     /// Class with read-only data of trace results.

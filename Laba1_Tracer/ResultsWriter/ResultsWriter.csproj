@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA4026DA-66E0-4564-AD08-940242CE027F}</ProjectGuid>
+    <ProjectGuid>{A95D9E77-2768-4853-940A-B0BE48E6FA40}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Tracer</RootNamespace>
-    <AssemblyName>Tracer</AssemblyName>
+    <RootNamespace>ResultsWriter</RootNamespace>
+    <AssemblyName>ResultsWriter</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -47,19 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITracer.cs" />
-    <Compile Include="NodeTree.cs" />
+    <Compile Include="Main\Writer.cs" />
+    <Compile Include="Model\TraceResultNonReadOnly.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResultsWriter.cs" />
-    <Compile Include="Serializator.cs" />
-    <Compile Include="TestClass.cs" />
-    <Compile Include="Tracer.cs" />
-    <Compile Include="TraceResult.cs" />
-    <Compile Include="TraceService.cs" />
+    <Compile Include="Service\Serializator.cs" />
+    <Compile Include="TestClasses\Bar.cs" />
+    <Compile Include="TestClasses\Foo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TracerLib\TracerLib.csproj">
+      <Project>{d10b13a1-dc2d-445a-ad37-e9f0959402a4}</Project>
+      <Name>TracerLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

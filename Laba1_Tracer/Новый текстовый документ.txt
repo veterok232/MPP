@@ -1,0 +1,50 @@
+using System.Threading;
+using NUnit.Framework;
+using TracerLib.Interface;
+using TracerLib.Main;
+using TracerLib.Model;
+using UnitTests.TestClasses;
+
+namespace UnitTests
+{
+    [TestFixture]
+    public class TestsMain
+    {
+        private ITracer tracer;
+
+        private Foo foo;
+
+        private Bar bar;
+
+        [SetUp]
+        public void Setup()
+        {
+            tracer = new Tracer();
+            foo = new Foo(tracer);
+            bar = new Bar(tracer);
+        }
+
+        [Test]
+        public void OneThreadTest_1Method()
+        {
+            foo.MyMethod();
+            TraceResult traceResult = tracer.GetTraceResult();
+
+            Assert.NotNull(traceResult.ThreadsInfo[0]);
+            Assert.AreEqual(1, traceResult.ThreadsInfo.Count);
+
+            Assert.AreEqual("MyMethod", traceResult.ThreadsInfo[0].MethodsInfo[0].Name);
+            Assert.AreEqual("Foo", traceResult.ThreadsInfo[0].MethodsInfo[0].ClassName);
+
+            Assert.AreEqual("InnerMethod", traceResult.ThreadsInfo[0].MethodsInfo[0].MethodsInfo[0].Name);
+            Assert.AreEqual("Bar", traceResult.ThreadsInfo[0].MethodsInfo[0].MethodsInfo[0].ClassName);
+
+            Assert.AreEqual("SuperInnerMethod", traceResult.ThreadsInfo[0].MethodsInfo[0].MethodsInfo[0].MethodsInfo[0].Name);
+            Assert.AreEqual("Bar", traceResult.ThreadsInfo[0].MethodsInfo[0].MethodsInfo[0].MethodsInfo[0].ClassName);
+            
+            Assert.GreaterOrEqual(System.Convert.ToInt32(
+                traceResult.ThreadsInfo[0].Time.Substring(0, traceResult.ThreadsInfo[0].Time.Length - 2)), 450);
+        }
+    }
+    + по аналогии тесты
+}

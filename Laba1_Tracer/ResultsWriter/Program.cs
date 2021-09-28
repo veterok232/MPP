@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+using TracerLib.Main;
+using TracerLib.Model;
+using ResultsWriter.Service;
+using ResultsWriter.Main;
+using ResultsWriter.TestClasses;
 
-namespace Tracer
+namespace ResultsWriter
 {
     class Program
     {
@@ -14,30 +14,30 @@ namespace Tracer
         {
             var tracer = new Tracer();
             var foo = new Foo(tracer);
-            
+
             Thread myThread = new Thread(new ThreadStart(foo.MyMethod));
             myThread.Start();
 
             foo.MyMethod();
 
-            Thread myThread2 = new Thread(new ThreadStart(foo.MyMethod2));
+            Thread myThread2 = new Thread(new ThreadStart(foo.MyMethod3));
             myThread2.Start();
             foo.MyMethod();
-            
+
             myThread.Join();
             myThread2.Join();
 
-            foo.MyMethod3();
+            foo.MyMethod2();
 
             TraceResult traceResult = tracer.GetTraceResult();
 
             SerializedTraceResult serializedTraceResult = TraceResultSerializator.SerializeJson(traceResult);
-            ResultsWriter.WriteToConsole(serializedTraceResult);
-            ResultsWriter.WriteToFile(serializedTraceResult, "D:/");
+            Writer.WriteToConsole(serializedTraceResult);
+            Writer.WriteToFile(serializedTraceResult, "D:/");
 
             SerializedTraceResult serializedTraceResultXml = TraceResultSerializator.SerializeXml(traceResult);
-            ResultsWriter.WriteToConsole(serializedTraceResultXml);
-            ResultsWriter.WriteToFile(serializedTraceResultXml, "D:/");
+            Writer.WriteToConsole(serializedTraceResultXml);
+            Writer.WriteToFile(serializedTraceResultXml, "D:/");
         }
     }
 }

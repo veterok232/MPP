@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Concurrent;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics;
-using System.Reflection;
+using TracerLib.Interface;
+using TracerLib.Model;
 
-namespace Tracer
+namespace TracerLib.Main
 {
     /// <summary>
     /// Tracer class for trace methods and measuring their executing time

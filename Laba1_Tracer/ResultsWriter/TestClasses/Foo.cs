@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Diagnostics;
+using TracerLib.Interface;
 
-namespace Tracer
+namespace ResultsWriter.TestClasses
 {
     public class Foo
     {
@@ -30,6 +28,7 @@ namespace Tracer
         public void MyMethod2()
         {
             _tracer.StartTrace();
+            Thread.Sleep(200);
             _bar.SuperInnerMethod();
             _tracer.StopTrace();
         }
@@ -38,39 +37,7 @@ namespace Tracer
         {
             _tracer.StartTrace();
             _bar.SuperInnerMethod();
-            _tracer.StopTrace();
-        }
-    }
-
-    public class Bar
-    {
-        private ITracer _tracer;
-
-        public Bar(ITracer tracer)
-        {
-            _tracer = tracer;
-        }
-
-        public void InnerMethod()
-        {
-            _tracer.StartTrace();
-            SuperInnerMethod();
-            int a = 0;
-            for (int i = 0; i < 10000000; i++)
-            {
-                a++;
-            }
-            _tracer.StopTrace();
-        }
-
-        public void SuperInnerMethod()
-        {
-            _tracer.StartTrace();
-            int a = 0;
-            for (int i = 0; i < 50000000; i++)
-            {
-                a++;
-            }
+            _bar.SuperInnerMethod();
             _tracer.StopTrace();
         }
     }
