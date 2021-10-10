@@ -32,7 +32,13 @@ namespace FakerLib
 
         public Faker()
         {
-            
+            PluginLoader pluginLoader = new PluginLoader();
+            var pluginGenerators = pluginLoader.LoadPlugins();
+
+            foreach (IGenerator generator in pluginGenerators)
+            {
+                generators.Add(generator);
+            }
         }
 
         public T Create<T>()
