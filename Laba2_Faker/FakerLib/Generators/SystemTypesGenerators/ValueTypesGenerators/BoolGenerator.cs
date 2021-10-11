@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 using FakerLib.Generators.Interfaces;
 using FakerLib.Generators.Service;
 
-
-namespace Plugins.IntGeneratorPlugin
+namespace FakerLib.Generators.SystemTypesGenerators.ValueTypesGenerators
 {
-    public class IntGenerator : IGenerator
+    public class BoolGenerator : IGenerator
     {
         object IGenerator.Generate(GeneratorContext context)
         {
-            return (int)context.Randomizer.Next();
+            return context.Randomizer.Next() % 2 == 0;
         }
 
         bool IGenerator.isTypeCompatible(Type type)
         {
-            return type == typeof(int);
+            return type == typeof(bool);
         }
     }
 }

@@ -7,18 +7,18 @@ using FakerLib.Generators.Interfaces;
 using FakerLib.Generators.Service;
 
 
-namespace Plugins.IntGeneratorPlugin
+namespace FakerLib.Generators.SystemTypesGenerators.ValueTypesGenerators
 {
-    public class IntGenerator : IGenerator
+    public class CharGenerator : IGenerator
     {
         object IGenerator.Generate(GeneratorContext context)
         {
-            return (int)context.Randomizer.Next();
+            return (char)context.Randomizer.Next('A', 'z');
         }
 
         bool IGenerator.isTypeCompatible(Type type)
         {
-            return type == typeof(int);
+            return type == typeof(char);
         }
     }
 }

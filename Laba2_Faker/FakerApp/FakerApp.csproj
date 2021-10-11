@@ -45,12 +45,14 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClasses\Bar.cs" />
+    <Compile Include="TestClasses\Foo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Faker\FakerLib.csproj">
+    <ProjectReference Include="..\FakerLib\FakerLib.csproj">
       <Project>{aec08cfa-c463-4ef3-aa50-4b53c9fcf86a}</Project>
       <Name>FakerLib</Name>
     </ProjectReference>

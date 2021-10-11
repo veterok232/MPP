@@ -7,18 +7,20 @@ using FakerLib.Generators.Interfaces;
 using FakerLib.Generators.Service;
 
 
-namespace Plugins.IntGeneratorPlugin
+namespace FakerLib.Generators.SystemTypesGenerators.ValueTypesGenerators
 {
-    public class IntGenerator : IGenerator
+    public class ULongGenerator : IGenerator
     {
         object IGenerator.Generate(GeneratorContext context)
         {
-            return (int)context.Randomizer.Next();
+            byte[] buf = new byte[8];
+            context.Randomizer.NextBytes(buf);
+            return (ulong)BitConverter.ToInt64(buf, 0);
         }
 
         bool IGenerator.isTypeCompatible(Type type)
         {
-            return type == typeof(int);
+            return type == typeof(ulong);
         }
     }
 }

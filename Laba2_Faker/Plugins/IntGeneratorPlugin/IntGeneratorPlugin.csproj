@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Generators\Generators.csproj">
-      <Project>{55bca333-21ae-4501-b8aa-a15ae39bc1bb}</Project>
-      <Name>Generators</Name>
+    <ProjectReference Include="..\..\FakerLib\FakerLib.csproj">
+      <Project>{aec08cfa-c463-4ef3-aa50-4b53c9fcf86a}</Project>
+      <Name>FakerLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

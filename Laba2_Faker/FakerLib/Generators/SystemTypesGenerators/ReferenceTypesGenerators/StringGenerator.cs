@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Generators.Interfaces;
-using Generators.Service;
+using FakerLib.Generators.Interfaces;
+using FakerLib.Generators.Service;
 
-namespace Generators.SystemTypeGenerators.ReferenceTypeGenerators
+namespace FakerLib.Generators.SystemTypesGenerators.ReferenceTypesGenerators
 {
     public class StringGenerator : IGenerator
     {

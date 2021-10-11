@@ -7,7 +7,7 @@ using FakerLib.Generators.Interfaces;
 using FakerLib.Generators.Service;
 
 
-namespace Plugins.IntGeneratorPlugin
+namespace FakerLib.Generators.SystemTypesGenerators.ValueTypesGenerators
 {
     public class IntGenerator : IGenerator
     {

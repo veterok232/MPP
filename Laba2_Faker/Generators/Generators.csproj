@@ -41,27 +41,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReferenceTypeGenerators\StringGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ReferenceTypesGenerators\ListGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ReferenceTypesGenerators\StringGenerator.cs" />
     <Compile Include="Service\GeneratorContext.cs" />
     <Compile Include="Interfaces\IGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueTypesGenerators\BoolGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\ByteGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\CharGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\DateTimeGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\DecimalGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\DoubleGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\FloatGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\IntGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\LongGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\SByteGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\ShortGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\UIntGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\ULongGenerator.cs" />
-    <Compile Include="ValueTypesGenerators\UShortGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\BoolGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\ByteGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\CharGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\DateTimeGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\DecimalGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\DoubleGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\FloatGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\IntGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\LongGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\SByteGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\ShortGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\UIntGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\ULongGenerator.cs" />
+    <Compile Include="SystemTypesGenerators\ValueTypesGenerators\UShortGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ValueTypesGenerators\Interfaces\" />
+    <Folder Include="SystemTypesGenerators\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

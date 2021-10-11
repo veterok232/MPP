@@ -7,18 +7,18 @@ using FakerLib.Generators.Interfaces;
 using FakerLib.Generators.Service;
 
 
-namespace Plugins.IntGeneratorPlugin
+namespace FakerLib.Generators.SystemTypesGenerators.ValueTypesGenerators
 {
-    public class IntGenerator : IGenerator
+    public class DecimalGenerator : IGenerator
     {
         object IGenerator.Generate(GeneratorContext context)
         {
-            return (int)context.Randomizer.Next();
+            return (decimal)context.Randomizer.NextDouble();
         }
 
         bool IGenerator.isTypeCompatible(Type type)
         {
-            return type == typeof(int);
+            return type == typeof(decimal);
         }
     }
 }

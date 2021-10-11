@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib", "Faker\FakerLib.csproj", "{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generators", "Generators\Generators.csproj", "{55BCA333-21AE-4501-B8AA-A15AE39BC1BB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{71DA0983-4D86-4484-9397-18322A5F31AC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerApp", "FakerApp\FakerApp.csproj", "{EA5DCC50-72D9-48F2-8363-778811D8E527}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharGeneratorPlugin", "Plugins\CharGeneratorPlugin\CharGeneratorPlugin.csproj", "{E476877C-EB57-4BC3-AC3D-876CC791B789}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntGeneratorPlugin", "Plugins\IntGeneratorPlugin\IntGeneratorPlugin.csproj", "{9888FF1B-9C27-4D98-A899-968C5BD142B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerApp", "FakerApp\FakerApp.csproj", "{EA5DCC50-72D9-48F2-8363-778811D8E527}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib", "FakerLib\FakerLib.csproj", "{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55BCA333-21AE-4501-B8AA-A15AE39BC1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55BCA333-21AE-4501-B8AA-A15AE39BC1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55BCA333-21AE-4501-B8AA-A15AE39BC1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55BCA333-21AE-4501-B8AA-A15AE39BC1BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E476877C-EB57-4BC3-AC3D-876CC791B789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E476877C-EB57-4BC3-AC3D-876CC791B789}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E476877C-EB57-4BC3-AC3D-876CC791B789}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,6 +27,14 @@ Global
 		{9888FF1B-9C27-4D98-A899-968C5BD142B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9888FF1B-9C27-4D98-A899-968C5BD142B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9888FF1B-9C27-4D98-A899-968C5BD142B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5DCC50-72D9-48F2-8363-778811D8E527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC08CFA-C463-4EF3-AA50-4B53C9FCF86A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
