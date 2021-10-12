@@ -46,6 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClasses\Bar.cs" />
+    <Compile Include="TestClasses\C.cs" />
     <Compile Include="TestClasses\Foo.cs" />
   </ItemGroup>
   <ItemGroup>

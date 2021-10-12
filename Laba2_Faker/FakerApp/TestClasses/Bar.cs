@@ -10,6 +10,7 @@ namespace FakerApp.TestClasses
     {
         public uint UIntA;
         public char CharA;
+        public Foo foo;
 
         public bool BoolA { get; set; }
 
@@ -18,7 +19,8 @@ namespace FakerApp.TestClasses
             string result = "-----Bar-----\n" +
                 "UIntA : " + UIntA.ToString() + "\n" +
                 "CharA : " + CharA + "\n" +
-                "BoolA : " + BoolA.ToString() + "\n";
+                "BoolA : " + BoolA.ToString() + "\n" + 
+                "foo: " + (foo?.ToString() ?? "null\n");
 
             return result;
         }

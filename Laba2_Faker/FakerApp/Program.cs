@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FakerLib.Interfaces;
 using FakerLib;
+using FakerLib.Generators.CustomGenerators;
 using FakerApp.TestClasses;
 
 namespace FakerApp
@@ -13,7 +14,10 @@ namespace FakerApp
     {
         static void Main(string[] args)
         {
-            Faker faker = new Faker();
+            FakerConfig fakerConfig = new FakerConfig();
+            fakerConfig.Add<Foo, string, PersonNameGenerator>(obj => obj.StrA);
+
+            Faker faker = new Faker(fakerConfig);
 
             int testInt = faker.Create<int>();
             char testChar = faker.Create<char>();
@@ -21,18 +25,28 @@ namespace FakerApp
             string testString = faker.Create<string>();
             List<char> testList = faker.Create<List<char>>();
             Foo foo = faker.Create<Foo>();
+            Bar bar = faker.Create<Bar>();
+            C c = faker.Create<C>();
 
-            Console.WriteLine(testInt);
-            Console.WriteLine(testChar);
-            Console.WriteLine(dateTime.ToString());
-            Console.WriteLine(testString);
+            Console.WriteLine("TestInt: " + testInt);
+            Console.WriteLine("TestChar: " + testChar);
+            Console.WriteLine("TestDateTime: " + dateTime.ToString());
+            Console.WriteLine("TestString: " + testString);
+
+            Console.WriteLine();
 
             foreach (var item in testList)
             {
                 Console.WriteLine(item.ToString());
             }
 
+            Console.WriteLine();
+
             Console.WriteLine(foo.ToString());
+            Console.WriteLine();
+            Console.WriteLine(bar.ToString());
+            Console.WriteLine();
+            Console.WriteLine(c.ToString());
         }
     }
 }

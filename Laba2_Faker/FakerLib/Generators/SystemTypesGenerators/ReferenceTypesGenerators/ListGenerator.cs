@@ -9,7 +9,7 @@ using FakerLib.Generators.Service;
 
 namespace FakerLib.Generators.SystemTypesGenerators.ReferenceTypesGenerators
 {
-    public class ListGenerator : IGenerator
+    public class ListGenerator : IGenericGenerator
     {
         private const int MAX_COUNT = 10;
 

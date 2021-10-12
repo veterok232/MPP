@@ -42,7 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Faker.cs" />
+    <Compile Include="FakerConfig.cs" />
+    <Compile Include="Generators\CustomGenerators\PersonNameGenerator.cs" />
+    <Compile Include="Generators\Interfaces\ICollectionGenerator.cs" />
     <Compile Include="Generators\Interfaces\IGenerator.cs" />
+    <Compile Include="Generators\Interfaces\IGenericGenerator.cs" />
     <Compile Include="Generators\Service\GeneratorContext.cs" />
     <Compile Include="Generators\SystemTypesGenerators\ReferenceTypesGenerators\ListGenerator.cs" />
     <Compile Include="Generators\SystemTypesGenerators\ReferenceTypesGenerators\StringGenerator.cs" />
@@ -61,6 +65,7 @@
     <Compile Include="Generators\SystemTypesGenerators\ValueTypesGenerators\ULongGenerator.cs" />
     <Compile Include="Generators\SystemTypesGenerators\ValueTypesGenerators\UShortGenerator.cs" />
     <Compile Include="Interfaces\IFaker.cs" />
+    <Compile Include="Interfaces\IFakerConfig.cs" />
     <Compile Include="Service\PluginLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

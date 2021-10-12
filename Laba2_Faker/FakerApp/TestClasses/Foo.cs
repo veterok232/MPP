@@ -17,8 +17,6 @@ namespace FakerApp.TestClasses
 
         public float _floatA { get; private set; }
         public string StrA { get; set; }
-        
-       
 
         public List<double> DoubleList;
 
@@ -50,7 +48,7 @@ namespace FakerApp.TestClasses
                 result += (counter++).ToString() + ") " + elem.ToString() + "\n";
             }
 
-            result += Bar.ToString();
+            result += "bar: " + (Bar?.ToString() ?? "null\n");
 
             return result;
         }
