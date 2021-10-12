@@ -13,16 +13,26 @@ using FakerLib.Service;
 
 namespace FakerLib
 {
+    /// <summary>
+    /// Faker class
+    /// </summary>
     public class Faker : IFaker
     {
+        //Supported generators
         private List<IGenerator> generators;
 
+        //Supported custom generators
         private Dictionary<MemberInfo, IGenerator> customGenerators;
 
+        //Stack for storage nested types
         private Stack<Type> nestedTypesStack;
 
+        /// <summary>
+        /// Create a new instance of Faker
+        /// </summary>
         public Faker()
         {
+            //Supported generators
             generators = new List<IGenerator> {
                 new BoolGenerator(),
                 new ByteGenerator(),
@@ -40,6 +50,7 @@ namespace FakerLib
                 new ListGenerator(),
             };
 
+            //Load generators from plugins
             PluginLoader pluginLoader = new PluginLoader();
             var pluginGenerators = pluginLoader.LoadPlugins();
 
@@ -52,12 +63,21 @@ namespace FakerLib
             nestedTypesStack = new Stack<Type>();
         }
 
+        /// <summary>
+        /// Create a new instance of Faker
+        /// </summary>
+        /// <param name="fakerConfig">FakerConfig object to configure Faker</param>
         public Faker(FakerConfig fakerConfig) :
             this()
         {
             customGenerators = fakerConfig.CustomGenerators;
         }
 
+        /// <summary>
+        /// Create DTO object
+        /// </summary>
+        /// <typeparam name="T">Type of DTO object</typeparam>
+        /// <returns>DTO object</returns>
         public T Create<T>()
         {
             nestedTypesStack.Clear();
@@ -66,10 +86,16 @@ namespace FakerLib
             return (T)Create(typeof(T));
         }
 
+        /// <summary>
+        /// Create DTO object
+        /// </summary>
+        /// <param name="type">Type of DTO object</param>
+        /// <returns>DTO object</returns>
         internal object Create(Type type)
         {
-            IGenerator generator = FindCustomGenerator(type);
+            IGenerator generator;
 
+            //Chose type of generator
             if ((generator = FindCustomGenerator(type)) != null)
             {
                 return generator.Generate(new GeneratorContext(new Random(), type, this));
@@ -94,6 +120,11 @@ namespace FakerLib
             return null;
         }
 
+        /// <summary>
+        /// Get instance of DTO object
+        /// </summary>
+        /// <param name="type">Type of DTO object</param>
+        /// <returns>DTO object</returns>
         private object GetInstance(Type type)
         {
             ConstructorInfo constructor = GetMaxCountParamsConstructor(type);
@@ -104,6 +135,11 @@ namespace FakerLib
             return generatedObject;
         }
 
+        /// <summary>
+        /// Generate parameters for constructor of DTO object
+        /// </summary>
+        /// <param name="parameters">Parameters of DTO object constructor</param>
+        /// <returns>Array of generated parameters</returns>
         private object[] GenerateParameters(ParameterInfo[] parameters)
         {
             object[] generatedParameters = new object[parameters.Length];
@@ -113,6 +149,7 @@ namespace FakerLib
             {
                 IGenerator generator;
 
+                //Choose type of generator
                 if ((generator = FindCustomGeneratorConstructorParams(parameter)) != null)
                 {
                     generatedParameters[counter] = 
@@ -139,6 +176,11 @@ namespace FakerLib
             return generatedParameters;
         }
 
+        /// <summary>
+        /// Get the most suitable constructor of DTO object with maximum count of parameters
+        /// </summary>
+        /// <param name="type">Type of DTO object</param>
+        /// <returns>ConstructorInfo object</returns>
         private ConstructorInfo GetMaxCountParamsConstructor(Type type)
         {
             ConstructorInfo[] constructors = 
@@ -159,6 +201,11 @@ namespace FakerLib
             return mostSuitableConstructor;
         }
 
+        /// <summary>
+        /// Find generator for this type
+        /// </summary>
+        /// <param name="type">Type of object</param>
+        /// <returns>IGenerator for this type of object or null</returns>
         private IGenerator FindGenerator(Type type)
         {
             foreach (IGenerator generator in generators)
@@ -172,6 +219,11 @@ namespace FakerLib
             return null;
         }
 
+        /// <summary>
+        /// Find custom generator for this type
+        /// </summary>
+        /// <param name="memberInfo">MemberInfo object</param>
+        /// <returns>IGenerator for this type of object or null</returns>
         private IGenerator FindCustomGenerator(MemberInfo memberInfo)
         {
             foreach (KeyValuePair<MemberInfo, IGenerator> customGenerator in customGenerators)
@@ -185,6 +237,11 @@ namespace FakerLib
             return null;
         }
 
+        /// <summary>
+        /// Find custom generator for constructor parameter
+        /// </summary>
+        /// <param name="parameterInfo">Constructor parameter</param>
+        /// <returns>IGenerator for this type of object or null</returns>
         private IGenerator FindCustomGeneratorConstructorParams(ParameterInfo parameterInfo)
         {
             IGenerator generator = null;
@@ -193,7 +250,6 @@ namespace FakerLib
             {
                 string convertedType;
 
-                // Choose kind of parameter
                 var member = customGenerator.Key;
                 switch (member.MemberType)
                 {
@@ -213,7 +269,6 @@ namespace FakerLib
                         return null;
                 }
 
-                // Check type and set generator
                 if ((customGenerator.Key.Name.ToLower() == parameterInfo.Name.ToLower()) &&
                     parameterInfo.ParameterType.ToString() == convertedType &&
                     parameterInfo.Member.DeclaringType.ToString() == customGenerator.Key.DeclaringType.ToString())
@@ -227,6 +282,10 @@ namespace FakerLib
             return null;
         }
 
+        /// <summary>
+        /// Set public fields of DTO object
+        /// </summary>
+        /// <param name="DTOObject">DTO object</param>
         private void SetFields(ref object DTOObject)
         {
             FieldInfo[] fields = DTOObject.GetType().GetFields();
@@ -256,6 +315,10 @@ namespace FakerLib
             }
         }
 
+        /// <summary>
+        /// Set public properties for DTO object
+        /// </summary>
+        /// <param name="DTOObject">DTO object</param>
         private void SetProperties(ref object DTOObject)
         {
             PropertyInfo[] properties = DTOObject.GetType().GetProperties();
@@ -285,6 +348,11 @@ namespace FakerLib
             }
         }
 
+        /// <summary>
+        /// Check for correct custom class
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>bool</returns>
         private bool IsCustomClass(Type type)
         {
             if ((type.IsClass) && (!type.IsArray) && (FindGenerator(type) == null))

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FakerLib.Service;
+using FakerLib.Generators.Interfaces;
 
 namespace FakerLib.Generators.Interfaces
 {
-    public interface IGenericGenerator : IGenerator
+    /// <summary>
+    /// Interface for generic generators
+    /// </summary>
+    interface IGenericGenerator : IGenerator
     {
     }
 }

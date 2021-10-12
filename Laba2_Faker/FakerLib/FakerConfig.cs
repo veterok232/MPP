@@ -11,17 +11,17 @@ using FakerLib.Generators.Interfaces;
 namespace FakerLib
 {
     /// <summary>
-    ///     FakerConfig class
+    /// FakerConfig class
     /// </summary>
     public class FakerConfig : IFakerConfig
     {
         /// <summary>
-        ///     Dictionary with custom congig for generators
+        /// Dictionary with custom generators for DTO
         /// </summary>
         public Dictionary<MemberInfo, IGenerator> CustomGenerators { get; private set; }
 
         /// <summary>
-        ///     Public constructor for FakerConfig
+        /// Create a new instance of FakerConfig
         /// </summary>
         public FakerConfig()
         {
@@ -29,13 +29,11 @@ namespace FakerLib
         }
 
         /// <summary>
-        ///     Add new config for Faker
+        /// Add new config for Faker
         /// </summary>
-        /// 
         /// <typeparam name="DTObjectType">DTO type</typeparam>
         /// <typeparam name="MemberType">Member base type</typeparam>
         /// <typeparam name="GeneratorType">Generator type</typeparam>
-        ///
         /// <param name="expression">Config expression</param>
         public void Add<DTObjectType, MemberType, GeneratorType>(Expression<Func<DTObjectType, MemberType>> expression)
             where DTObjectType : class
@@ -55,7 +53,7 @@ namespace FakerLib
                 throw new ArgumentException("Invalid generator type!");
             }
 
-            // Add new config expression in dictionary
+            // Add new config expression to dictionary
             CustomGenerators.Add(((MemberExpression)eBody).Member, generator);
         }
     }

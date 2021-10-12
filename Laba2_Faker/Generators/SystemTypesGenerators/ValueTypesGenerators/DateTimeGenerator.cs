@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FakerLib.Generators.Interfaces;
-using FakerLib.Generators.Service;
+using Generators.Interfaces;
+using Generators.Service;
 
-namespace FakerLib.Generators.SystemTypesGenerators.ValueTypesGenerators
+namespace Generators.SystemTypesGenerators.ValueTypesGenerators
 {
-    /// <summary>
-    /// DateTimeGenerator object
-    /// </summary>
     public class DateTimeGenerator : IGenerator
     {
-        /// <summary>
-        /// Generate DateTime object
-        /// </summary>
-        /// <param name="context">GeneratorContext object</param>
-        /// <returns>object</returns>
         object IGenerator.Generate(GeneratorContext context)
         {
             int year = context.Randomizer.Next(DateTime.MinValue.Year, DateTime.MaxValue.Year + 1);
@@ -31,11 +23,6 @@ namespace FakerLib.Generators.SystemTypesGenerators.ValueTypesGenerators
             return new DateTime(year, month, day, hour, minute, second, millisecond);
         }
 
-        /// <summary>
-        /// Check the type for generator
-        /// </summary>
-        /// <param name="type">Type for check</param>
-        /// <returns>bool</returns>
         bool IGenerator.isTypeCompatible(Type type)
         {
             return type == typeof(DateTime);

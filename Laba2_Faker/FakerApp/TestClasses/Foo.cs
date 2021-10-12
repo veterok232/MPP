@@ -10,45 +10,51 @@ namespace FakerApp.TestClasses
     {
         private string _strB;
 
-        public int IntA;
-        public char CharA;
-        public DateTime DateTimeA;
-        public Bar Bar;
-
-        public float _floatA { get; private set; }
+        public decimal DecimalA;
+        public double DoubleA;
+        public float FloatA;
+        
+        public int IntA { get; private set; }
         public string StrA { get; set; }
+        public Bar Bar { get; private set; }
 
         public List<double> DoubleList;
 
-        public Foo(float floatA)
+        public Foo(int intA)
         {
-            _floatA = floatA;
+            IntA = intA;
         }
 
-        public Foo(float floatA, string strB)
+        public Foo(int intA, string strB, Bar bar)
         {
-            _floatA = floatA;
+            IntA = intA;
             _strB = strB;
+            Bar = bar;
+        }
+
+        public string GetStrB()
+        {
+            return _strB;
         }
 
         public override string ToString()
         {
             string result = "-----Foo-----\n" +
-                "IntA : " + IntA.ToString() + "\n" +
-                "CharA : " + CharA + "\n" +
-                "DateTimeA : " + DateTimeA.ToString() + "\n" +
-                "StrA : " + StrA + "\n" +
-                "_floatA : " + _floatA.ToString() + "\n" +
-                "_strB : " + _strB + "\n";
+                "1. _strB : " + _strB + "\n" +
+                "2. DecimalA : " + DecimalA.ToString() + "\n" +
+                "3. DoubleA : " + DoubleA.ToString() + "\n" +
+                "4. FloatA : " + FloatA + "\n" +
+                "5. IntA : " + IntA.ToString() + "\n" +
+                "6. StrA : " + StrA + "\n";
 
-            result += "DoubleList:\n";
+            result += "7. DoubleList:\n";
             int counter = 0;
             foreach (var elem in DoubleList)
             {
                 result += (counter++).ToString() + ") " + elem.ToString() + "\n";
             }
 
-            result += "bar: " + (Bar?.ToString() ?? "null\n");
+            result += "8. bar: " + (Bar?.ToString() ?? "null\n");
 
             return result;
         }

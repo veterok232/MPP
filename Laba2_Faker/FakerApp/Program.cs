@@ -10,8 +10,15 @@ using FakerApp.TestClasses;
 
 namespace FakerApp
 {
+    /// <summary>
+    /// Main program
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main method
+        /// </summary>
+        /// <param name="args">Arguments for command line</param>
         static void Main(string[] args)
         {
             FakerConfig fakerConfig = new FakerConfig();
@@ -35,6 +42,7 @@ namespace FakerApp
 
             Console.WriteLine();
 
+            Console.WriteLine("Test list: \n");
             foreach (var item in testList)
             {
                 Console.WriteLine(item.ToString());

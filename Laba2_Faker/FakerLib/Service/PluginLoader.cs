@@ -9,10 +9,18 @@ using FakerLib.Generators.Interfaces;
 
 namespace FakerLib.Service
 {
+    /// <summary>
+    /// Class for loading plugins with generators
+    /// </summary>
     public class PluginLoader
     {
+        //Path to plugins folder
         private readonly string pluginFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Plugins\\bin");
 
+        /// <summary>
+        /// Load plugins from plugins folder
+        /// </summary>
+        /// <returns>List<IGenerator></returns>
         public List<IGenerator> LoadPlugins()
         {
             List<IGenerator> pluginList = new List<IGenerator>();

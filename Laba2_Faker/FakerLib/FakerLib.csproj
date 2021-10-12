@@ -44,7 +44,6 @@
     <Compile Include="Faker.cs" />
     <Compile Include="FakerConfig.cs" />
     <Compile Include="Generators\CustomGenerators\PersonNameGenerator.cs" />
-    <Compile Include="Generators\Interfaces\ICollectionGenerator.cs" />
     <Compile Include="Generators\Interfaces\IGenerator.cs" />
     <Compile Include="Generators\Interfaces\IGenericGenerator.cs" />
     <Compile Include="Generators\Service\GeneratorContext.cs" />

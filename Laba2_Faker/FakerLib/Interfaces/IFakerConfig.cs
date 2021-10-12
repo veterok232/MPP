@@ -8,6 +8,9 @@ using FakerLib.Generators.Interfaces;
 
 namespace FakerLib.Interfaces
 {
+    /// <summary>
+    /// Interface for FakerConfig
+    /// </summary>
     public interface IFakerConfig
     {
         void Add<DTObjectType, MemberType, GeneratorType>(Expression<Func<DTObjectType, MemberType>> expression)
