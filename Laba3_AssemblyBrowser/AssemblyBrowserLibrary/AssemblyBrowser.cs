@@ -88,7 +88,12 @@ namespace AssemblyBrowserLibrary
             foreach (var assemblyType in assemblyTypes)
             {
                 var typeData = TypeHandler.GetData(assemblyType);
-                if (!NamespacesDictionary.TryGetValue(assemblyType?.Namespace ?? "Without namespace", out _))
+                if (NamespacesDictionary.TryGetValue(assemblyType?.Namespace ?? "Without namespace", out List<DataType> namespaceTypes))
+                {
+                    namespaceTypes.Add(typeData);
+                }
+                else
+                //if (!NamespacesDictionary.TryGetValue(assemblyType?.Namespace ?? "Without namespace", out _))
                 {
                     NamespacesDictionary.Add(assemblyType?.Namespace ?? "Without namespace", new List<DataType>() { typeData });
                 }

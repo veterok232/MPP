@@ -30,19 +30,19 @@ namespace AssemblyBrowserLibrary.Block.TypesData
 
             if ((AccessPermissionsList & Permissions.Sealed) != 0)
             {
-                accessPermissions = accessPermissions + "sealed";
+                accessPermissions = accessPermissions + "sealed ";
             }
             if ((AccessPermissionsList & Permissions.Abstract) != 0)
             {
-                accessPermissions = accessPermissions + "abstract";
+                accessPermissions = accessPermissions + "abstract ";
             }
             if ((AccessPermissionsList & Permissions.Virtual) != 0)
             {
-                accessPermissions = accessPermissions + "virtual";
+                accessPermissions = accessPermissions + "virtual ";
             }
             if ((AccessPermissionsList & Permissions.Static) != 0)
             {
-                accessPermissions = accessPermissions + "static";
+                accessPermissions = accessPermissions + "static ";
             }
 
             return accessPermissions;
