@@ -66,7 +66,7 @@ namespace AssemblyBrowserLibrary.Block.TypesData
         {
             foreach (var parameter in Parameters)
             {
-                sb.Append($"{parameter.Key} {parameter.Value}, ");
+                sb.Append($"{parameter.Value} {parameter.Key}, ");
             }
             if (Parameters.Count > 0)
             {

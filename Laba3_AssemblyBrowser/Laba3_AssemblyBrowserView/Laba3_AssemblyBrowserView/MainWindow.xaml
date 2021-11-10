@@ -7,17 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="3,6,3.6,10.4">
-        <Button Command="{Binding OpenAssemblyCommand}"/>
-        <TreeView ItemsSource="{Binding NamespaceWrapper}" Margin="0,40,0,-3" HorizontalAlignment="Left" Width="1275">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="Загрузить сборку" Command="{Binding OpenAssemblyCommand}"/>
+        <TreeView Grid.Row="1" ItemsSource="{Binding Namespaces}" Margin="0,5,0,-3" HorizontalAlignment="Left" Width="1275">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Path=Types}">
                     <TextBlock Text="{Binding Name}" FontSize="12"/>
                     <HierarchicalDataTemplate.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Path=Members}">
-                            <TextBlock Text="{Binding WrapperDeclaration}" FontSize="12"/>
+                            <TextBlock Text="{Binding DataDeclaration}" FontSize="12"/>
                             <HierarchicalDataTemplate.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding WrapperDeclaration}" FontSize="12"/>
+                                    <TextBlock Text="{Binding DataDeclaration}" FontSize="12"/>
                                 </DataTemplate>
                             </HierarchicalDataTemplate.ItemTemplate>
                         </HierarchicalDataTemplate>

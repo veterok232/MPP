@@ -94,7 +94,5 @@ namespace AssemblyBrowserLibrary.Block.TypesHandlers
                 return new Dictionary<string, string>();
             }
         }
-
-
     }
 }

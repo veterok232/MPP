@@ -51,12 +51,12 @@ namespace AssemblyBrowserLibrary.Block.TypesHandlers
 
         public override GeneralDataType GetData(MemberInfo data)
         {
-            FieldInfo = (FieldInfo)data;    
+            FieldInfo = (FieldInfo)data;
             return new FieldData(
                 FieldInfo.Name,
                 ConvertTypeName(FieldInfo.FieldType),
                 GetAccessPermissions(),
-                GetAccessPermissionsList())
+                GetAccessPermissionsList());
         }
     }
 }
