@@ -70,7 +70,7 @@ namespace TestGeneratorLib.Block
         private static List<MethodData> GetMethodsInfo(ClassDeclarationSyntax classNode)
         {
             var allMethods = classNode.DescendantNodes().OfType<MethodDeclarationSyntax>()
-                .Where((methodData) => methodData.Modifiers.Any((modifier) => modifier.IsKind(SyntaxKind.PublicKeyword));
+                .Where((methodData) => methodData.Modifiers.Any((modifier) => modifier.IsKind(SyntaxKind.PublicKeyword)));
             var methodsData = new List<MethodData>();
             foreach (var methodData in allMethods)
             {

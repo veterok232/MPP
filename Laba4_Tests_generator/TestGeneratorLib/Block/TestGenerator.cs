@@ -130,7 +130,7 @@ namespace TestGeneratorLib.Block
             if (classData.ConstructorsData.Count > 0)
             {
                 constructor = FindLargestConstructor(classData.ConstructorsData);
-                var interfaces = ProcessCustomType(constructor.Parameters);
+                var interfaces = HandleCustomType(constructor.Parameters);
 
                 foreach (var custom in interfaces)
                 {
@@ -140,7 +140,7 @@ namespace TestGeneratorLib.Block
             }
 
             // Generate class properties
-            variable = GenerateVariable(classData.Name, ProcessVariable(classData.Name));
+            variable = GenerateVariable(classData.Name, HandleVariable(classData.Name));
             fields.Add(GenerateField(variable));
 
             // Generate methods
