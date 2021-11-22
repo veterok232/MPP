@@ -87,8 +87,8 @@
     <Compile Include="Block\CodeAnalyzer.cs" />
     <Compile Include="Block\TestGenerator.cs" />
     <Compile Include="Model\ClassData.cs" />
-    <Compile Include="Model\Class\ConstructorData.cs" />
-    <Compile Include="Model\Class\MethodData.cs" />
+    <Compile Include="Model\ConstructorData.cs" />
+    <Compile Include="Model\MethodData.cs" />
     <Compile Include="Model\FileData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
