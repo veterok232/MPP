@@ -9,12 +9,26 @@ using DependencyInjectionContainer.Model;
 
 namespace DependencyInjectionContainer.Block
 {
+    /// <summary>
+    ///     Dependency provider
+    /// </summary>
     public class DependencyProvider : IDependencyProvider
     {
+        /// <summary>
+        ///     Dependencies configuration
+        /// </summary>
         private readonly IDependenciesConfiguration Configuration;
 
+        /// <summary>
+        ///     Singleton objects
+        /// </summary>
         private readonly Dictionary<Type, List<Singleton>> Singletons;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        /// 
+        /// <param name="configuration">Dependencies configuration</param>
         public DependencyProvider(IDependenciesConfiguration configuration)
         {
             IValidator configValidator = new Validator(configuration);
@@ -27,12 +41,28 @@ namespace DependencyInjectionContainer.Block
             Singletons = new Dictionary<Type, List<Singleton>>();
         }
 
+        /// <summary>
+        ///     Resolve a dependency
+        /// </summary>
+        /// 
+        /// <typeparam name="TDependency">Dependency class</typeparam>
+        /// <param name="number">Implementation number</param>
+        /// 
+        /// <returns>TDependency</returns>
         public TDependency Resolve<TDependency>(ServiceImplementations number = ServiceImplementations.Any)
             where TDependency : class
         {
             return (TDependency)Resolve(typeof(TDependency), number);
         }
 
+        /// <summary>
+        ///     Resolve a dependency
+        /// </summary>
+        /// 
+        /// <param name="dependencyType">Dependency class</param>
+        /// <param name="number">Implementation number</param>
+        /// 
+        /// <returns>object</returns>
         public object Resolve(Type dependencyType, ServiceImplementations number = ServiceImplementations.Any)
         {
             object result;
@@ -52,11 +82,24 @@ namespace DependencyInjectionContainer.Block
             return result;
         }
 
+        /// <summary>
+        ///     Check that dependency type is enumerable
+        /// </summary>
+        /// 
+        /// <param name="dependencyType">Dependency type</param>
+        /// 
+        /// <returns>bool</returns>
         private bool IsEnumerable(Type dependencyType)
         {
             return dependencyType.GetInterfaces().Any(i => i.Name == "IEnumerable");
         }
 
+        /// <summary>
+        ///     Create dependency for enumerable object
+        /// </summary>
+        /// <param name="dependencyType">Dependency type</param>
+        /// 
+        /// <returns>IList</returns>
         private IList CreateEnumerable(Type dependencyType)
         {
             var result = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(dependencyType));
@@ -71,6 +114,14 @@ namespace DependencyInjectionContainer.Block
             return result;
         }
 
+        /// <summary>
+        ///     Get container by dependency type
+        /// </summary>
+        /// 
+        /// <param name="dependencyType">Dependency type</param>
+        /// <param name="number">Implementation number</param>
+        /// 
+        /// <returns>Implementation</returns>
         private Implementation GetContainerByDependencyType(Type dependencyType, ServiceImplementations number)
         {
             Implementation container;
@@ -88,6 +139,14 @@ namespace DependencyInjectionContainer.Block
             return container;
         }
 
+        /// <summary>
+        ///     Get generated class
+        /// </summary>
+        /// 
+        /// <param name="dependencyType">Dependency type</param>
+        /// <param name="implementationType">Implementation type</param>
+        /// 
+        /// <returns>Type</returns>
         private Type GetGeneratedType(Type dependencyType, Type implementationType)
         {
             if (dependencyType.IsGenericType && implementationType.IsGenericTypeDefinition)
@@ -98,6 +157,16 @@ namespace DependencyInjectionContainer.Block
             return implementationType;
         }
 
+        /// <summary>
+        ///     Resolve non enumerable class
+        /// </summary>
+        /// 
+        /// <param name="implementationType">Implementation type</param>
+        /// <param name="ttl">Time to live</param>
+        /// <param name="dependencyType">Dependency type</param>
+        /// <param name="number">Implementation number</param>
+        /// 
+        /// <returns>object</returns>
         private object ResolveNonEnumerable(Type implementationType, TTL ttl, Type dependencyType, ServiceImplementations number)
         {
             if (ttl != TTL.Singleton)
@@ -119,6 +188,14 @@ namespace DependencyInjectionContainer.Block
             }
         }
 
+        /// <summary>
+        ///     Get last container
+        /// </summary>
+        /// 
+        /// <param name="dependencyType">Dependency type</param>
+        /// <param name="number">Implementation number</param>
+        /// 
+        /// <returns>Implementation</returns>
         private Implementation GetLastContainer(Type dependencyType, ServiceImplementations number)
         {
             if (Configuration.Dependencies.ContainsKey(dependencyType))
@@ -129,6 +206,15 @@ namespace DependencyInjectionContainer.Block
             return null;
         }
 
+        /// <summary>
+        ///     Check that singleton exists
+        /// </summary>
+        /// 
+        /// <param name="dependencyType">Dependency type</param>
+        /// <param name="implementationType">Implementation type</param>
+        /// <param name="number">Implementation number</param>
+        /// 
+        /// <returns>bool</returns>
         private bool IsInSingletons(Type dependencyType, Type implementationType, ServiceImplementations number)
         {
             var list = Singletons.ContainsKey(dependencyType) ? Singletons[dependencyType] : null;
@@ -136,6 +222,13 @@ namespace DependencyInjectionContainer.Block
             return list?.Find(container => number.HasFlag(container.Number) && container.Instance.GetType() == implementationType) != null;
         }
 
+        /// <summary>
+        ///     Add a new sigleton object
+        /// </summary>
+        /// 
+        /// <param name="dependencyType">Dependency type</param>
+        /// <param name="implementation">Implementation type</param>
+        /// <param name="number">Implementation number</param>
         private void AddToSingletons(Type dependencyType, object implementation, ServiceImplementations number)
         {
             if (Singletons.ContainsKey(dependencyType))
@@ -148,6 +241,13 @@ namespace DependencyInjectionContainer.Block
             }
         }
 
+        /// <summary>
+        ///     Create a new dependency instance
+        /// </summary>
+        /// 
+        /// <param name="implementationType">Implementation type</param>
+        /// 
+        /// <returns>object</returns>
         private object CreateInstance(Type implementationType)
         {
             var constructors = implementationType.GetConstructors(BindingFlags.Instance | BindingFlags.Public);

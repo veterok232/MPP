@@ -2,6 +2,9 @@
 
 namespace DependencyInjectionContainer.Model
 {
+    /// <summary>
+    ///     Implementation number
+    /// </summary>
     [Flags]
     public enum ServiceImplementations
     {
