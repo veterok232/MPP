@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\Attributes\DependencyKeyAttribute.cs" />
-    <Compile Include="Api\IDependenciesConfiguration.cs" />
-    <Compile Include="Api\IDependencyProvider.cs" />
-    <Compile Include="Api\Parameters\ServiceImplementations.cs" />
-    <Compile Include="Api\Parameters\TTL.cs" />
-    <Compile Include="Api\Validator\IValidator.cs" />
+    <Compile Include="Helper\Validator.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
+    <Compile Include="Model\DependencyKeyAttribute.cs" />
+    <Compile Include="Interfaces\IDependenciesConfiguration.cs" />
+    <Compile Include="Interfaces\IDependencyProvider.cs" />
+    <Compile Include="Model\ServiceImplementations.cs" />
+    <Compile Include="Model\TTL.cs" />
     <Compile Include="Block\DependenciesConfiguration.cs" />
     <Compile Include="Block\DependencyProvider.cs" />
-    <Compile Include="Helper\Validator.cs" />
     <Compile Include="Model\Implementation.cs" />
     <Compile Include="Model\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
